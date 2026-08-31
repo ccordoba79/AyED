@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Estratégica - Proyecto RPM (AMP)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'Gotham Rounded';
+            src: local('Gotham Rounded'), local('GothamRounded-Medium'), url('https://fonts.cdnfonts.com/s/14896/GothamRoundedMedium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Gotham Rounded';
+            src: local('Gotham Rounded Bold'), local('GothamRounded-Bold'), url('https://fonts.cdnfonts.com/s/14896/GothamRoundedBold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --amp-green: #1B432C;
+            --amp-green-light: #2A6643;
+            --amp-gold: #A58C53;
+            --amp-gold-light: #C4AB71;
+            --amp-bg: #F8FAF8;
+            --amp-card: #FFFFFF;
+            --amp-dark: #111827;
+            --font-gotham: 'Gotham Rounded', 'Nunito', system-ui, -apple-system, sans-serif;
+            --font-roboto: 'Roboto', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--amp-bg);
+            color: #333333;
+            font-family: var(--font-roboto);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6, 
+        .font-gotham, 
+        .navbar-brand, 
+        .badge, 
+        .step-number {
+            font-family: var(--font-gotham);
+            letter-spacing: -0.02em;
+        }
+
+        .bg-amp-green { background-color: var(--amp-green) !important; }
+        .bg-amp-green-light { background-color: var(--amp-green-light) !important; }
+        .bg-amp-gold { background-color: var(--amp-gold) !important; }
+        .bg-amp-gold-light { background-color: var(--amp-gold-light) !important; }
+        .bg-amp-soft { background-color: var(--amp-bg) !important; }
+
+        .text-amp-green { color: var(--amp-green) !important; }
+        .text-amp-gold { color: var(--amp-gold) !important; }
+        .text-amp-gold-light { color: var(--amp-gold-light) !important; }
+
+        .border-amp-green { border-color: var(--amp-green) !important; }
+        .border-amp-gold { border-color: var(--amp-gold) !important; }
+
+        .border-start-amp-green { border-left: 5px solid var(--amp-green) !important; }
+        .border-start-amp-gold { border-left: 5px solid var(--amp-gold) !important; }
+        .border-top-amp-green { border-top: 4px solid var(--amp-green) !important; }
+        .border-top-amp-gold { border-top: 4px solid var(--amp-gold) !important; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .header-border {
+            border-bottom: 4px solid var(--amp-gold);
+        }
+
+        .step-number {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-amp-green text-white py-5 px-3 header-border shadow-sm">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-12 col-md-8 text-center text-md-start">
+                    <span class="badge bg-amp-gold text-white text-uppercase px-3 py-2 rounded-pill mb-2">
+                        Caso de Estudio &amp; Producto Digital
+                    </span>
+                    <h1 class="display-6 fw-bold mb-1">
+                        Proyecto RPM: Registro y Prescripción Médica
+                    </h1>
+                    <p class="text-amp-gold-light fs-5 mb-0">
+                        Agremiación Médica Platense (AMP) — Transformación Digital Asistencial &amp; Optimización de Flujos
+                    </p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="bg-amp-green-light p-3 rounded-3 border border-amp-gold border-opacity-25 d-flex align-items-center justify-content-around">
+                        <div class="text-center pe-3 border-end border-amp-gold border-opacity-50">
+                            <span class="d-block small text-light text-uppercase font-gotham fw-bold">North Star Metric</span>
+                            <span class="fs-2 font-gotham fw-bold text-amp-gold-light">PGES</span>
+                        </div>
+                        <div>
+                            <span class="d-block small text-light">Prescripciones Exitosas</span>
+                            <span class="d-block small fw-bold text-white">Semanales sin Error</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        
+        <section class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-5">
+            <h2 class="h3 fw-bold text-amp-green mb-3 border-bottom border-amp-gold border-opacity-25 pb-2">
+                Contexto Estratégico y Oportunidad
+            </h2>
+            <p class="lead fs-6 text-secondary mb-4">
+                La comunidad médica agremiada a la AMP requiere herramientas ágiles para validar la identidad profesional y emitir prescripciones normadas desde entornos móviles de consulta o guardia. El Proyecto RPM moderniza el ecosistema digital institucional reduciendo la carga administrativa, eliminando errores de carga y proyectando solvencia profesional mediante una PWA responsive adaptada al Sistema de Diseño oficial de la AMP.
+            </p>
+
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="bg-amp-soft p-4 rounded-3 border-start-amp-green shadow-sm h-100">
+                        <span class="small font-gotham fw-bold text-muted text-uppercase d-block mb-1">Tiempo de Gestión (TTR)</span>
+                        <span class="display-6 font-gotham fw-bold text-amp-green d-block">&lt; 90s</span>
+                        <span class="small text-secondary">Reducción desde 4.5 min iniciales</span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="bg-amp-soft p-4 rounded-3 border-start-amp-gold shadow-sm h-100">
+                        <span class="small font-gotham fw-bold text-muted text-uppercase d-block mb-1">Tasa de Adopción D90</span>
+                        <span class="display-6 font-gotham fw-bold text-amp-gold d-block">+35%</span>
+                        <span class="small text-secondary">Personal activo en 90 días</span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="bg-amp-soft p-4 rounded-3 border-start-amp-green shadow-sm h-100">
+                        <span class="small font-gotham fw-bold text-muted text-uppercase d-block mb-1">Tasa de Error / Rechazo</span>
+                        <span class="display-6 font-gotham fw-bold text-amp-green d-block">&lt; 2%</span>
+                        <span class="small text-secondary">Trámites rebotados por carga</span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="bg-amp-soft p-4 rounded-3 border-start-amp-gold shadow-sm h-100">
+                        <span class="small font-gotham fw-bold text-muted text-uppercase d-block mb-1">Retención a 30 Días (D30)</span>
+                        <span class="display-6 font-gotham fw-bold text-amp-gold d-block">60%</span>
+                        <span class="small text-secondary">Uso recurrente del sistema</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="text-center max-w-2xl mx-auto mb-4">
+                <h2 class="h3 fw-bold text-amp-green mb-1">
+                    Métricas de Impacto y Proyecciones de Operación
+                </h2>
+                <p class="text-secondary small">
+                    Análisis comparativo de la eficiencia operativa previa frente a los objetivos cuantitativos del MVP en desarrollo.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                
+                <div class="col-12 col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h3 class="h5 fw-bold text-amp-green mb-1">
+                                Distribución del Tiempo en Flujos Actuales
+                            </h3>
+                            <p class="small text-secondary mb-3">
+                                Porcentaje del tiempo invertido por la comunidad médica en tareas administrativas vs. atención directa a pacientes.
+                            </p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chartFriccion"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h3 class="h5 fw-bold text-amp-green mb-1">
+                                Curva Proyectada de Adopción Digital (Día 1 a 90)
+                            </h3>
+                            <p class="small text-secondary mb-3">
+                                Incremento paulatino del personal de salud capacitado e integrado en la plataforma.
+                            </p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chartAdopcion"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h3 class="h5 fw-bold text-amp-green mb-1">
+                                Evolución del Tiempo de Respuesta (TTR en Segundos)
+                            </h3>
+                            <p class="small text-secondary mb-3">
+                                Comparativa entre el sistema legacy y las fases de iteración del sistema RPM con formularios asistidos.
+                            </p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chartTTR"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h3 class="h5 fw-bold text-amp-green mb-1">
+                                Relación: Volumen de Trámites vs. Tasa de Error
+                            </h3>
+                            <p class="small text-secondary mb-3">
+                                Matriz de dispersión analítica que evidencia cómo la autovalidación reduce los rechazos normativos.
+                            </p>
+                        </div>
+                        <div id="plotlyScatter" class="w-100" style="height: 320px;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-5">
+            <div class="mb-4">
+                <h2 class="h3 fw-bold text-amp-green mb-2 border-bottom border-amp-gold border-opacity-25 pb-2">
+                    Framework Jobs-To-Be-Done (JTBD)
+                </h2>
+                <p class="text-secondary small">
+                    Estructuración de las necesidades profundas del personal médico agremiado bajo tres dimensiones fundamentales.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <div class="bg-amp-soft p-4 rounded-4 border border-amp-green border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="step-number bg-amp-green text-white mb-3">1</div>
+                            <h3 class="h5 fw-bold text-amp-green mb-2">Dimensión Funcional</h3>
+                            <p class="text-secondary small">
+                                "Al atender a una persona en consulta o guardia, se requiere validar la matrícula e identidad profesional de forma rápida para emitir prescripciones normadas sin errores administrativos."
+                            </p>
+                        </div>
+                        <span class="badge bg-amp-green bg-opacity-10 text-amp-green align-self-start mt-3">
+                            Foco: Rapidez &amp; Cero Errores
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="bg-amp-soft p-4 rounded-4 border border-amp-gold border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="step-number bg-amp-gold text-white mb-3">2</div>
+                            <h3 class="h5 fw-bold text-amp-gold mb-2">Dimensión Emocional</h3>
+                            <p class="text-secondary small">
+                                "Tener la certeza de que los trámites y prescripciones cumplen rigurosamente con los marcos legales vigentes sin requerir esfuerzo burocrático adicional."
+                            </p>
+                        </div>
+                        <span class="badge bg-amp-gold bg-opacity-10 text-amp-gold align-self-start mt-3">
+                            Foco: Certeza &amp; Tranquilidad
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="bg-amp-soft p-4 rounded-4 border border-amp-green border-opacity-25 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="step-number bg-amp-green text-white mb-3">3</div>
+                            <h3 class="h5 fw-bold text-amp-green mb-2">Dimensión Social</h3>
+                            <p class="text-secondary small">
+                                "Proyectar ante la comunidad de pacientes e instituciones de salud una imagen de actualización tecnológica, eficiencia y profesionalismo alineada a la AMP."
+                            </p>
+                        </div>
+                        <span class="badge bg-amp-green bg-opacity-10 text-amp-green align-self-start mt-3">
+                            Foco: Prestigio Institucional
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row g-4 align-items-stretch mb-5">
+            <div class="col-12 col-lg-7">
+                <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <h2 class="h3 fw-bold text-amp-green mb-3 border-bottom border-amp-gold border-opacity-25 pb-2">
+                            Especificaciones del Sistema de Diseño AMP
+                        </h2>
+                        <p class="text-secondary small mb-4">
+                            Cumplimiento estricto de las guías de marca (Manual de Identidad) garantizando máxima pregnancia visual en dispositivos móviles y accesibilidad WCAG 2.1 AA.
+                        </p>
+
+                        <div class="mb-4">
+                            <span class="small font-gotham fw-bold text-muted text-uppercase d-block mb-2">Paleta Institucional Oficial</span>
+                            <div class="row g-2">
+                                <div class="col-6 col-sm-4">
+                                    <div class="p-3 bg-amp-green text-white rounded-3 small">
+                                        <span class="font-gotham fw-bold d-block">Verde Primario</span>
+                                        <span class="opacity-75">#1B432C</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-4">
+                                    <div class="p-3 bg-amp-gold text-white rounded-3 small">
+                                        <span class="font-gotham fw-bold d-block">Dorado Secundario</span>
+                                        <span class="opacity-75">#A58C53</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="p-3 bg-white text-dark border rounded-3 small">
+                                        <span class="font-gotham fw-bold d-block">Fondo Blanco</span>
+                                        <span class="text-muted">#FFFFFF</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 bg-amp-soft p-3 rounded-3 mb-4">
+                            <div class="col-12 col-sm-6">
+                                <span class="font-gotham fw-bold text-amp-green d-block">Tipografía Principal</span>
+                                <span class="text-secondary small">Gotham Rounded (Titulares y navegación)</span>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <span class="font-gotham fw-bold text-amp-green d-block">Tipografía Secundaria</span>
+                                <span class="text-secondary small">Roboto (Cuerpo de texto y tablas)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success bg-amp-green bg-opacity-10 border-amp-green border-opacity-25 text-amp-green mb-0 small fw-bold">
+                        Cumplimiento WCAG 2.1 AA: Relación de contraste superior a 4.5:1 y estados de foco visibles en amarillo/dorado (#A58C53).
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-5">
+                <div class="card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <h3 class="h5 fw-bold text-amp-green mb-1">
+                            Auditoría de UX &amp; Accesibilidad
+                        </h3>
+                        <p class="small text-secondary mb-3">
+                            Evaluación del prototipo frente a los estándares de interfaz y marca exigidos.
+                        </p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chartRadar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+            <h2 class="h3 fw-bold text-amp-green mb-2 border-bottom border-amp-gold border-opacity-25 pb-2">
+                Flujo de Emisión de Prescripción Móvil (MVP)
+            </h2>
+            <p class="text-secondary small mb-4">
+                Secuencia paso a paso simplificada para la ejecución en pantalla táctil durante la atención clínica.
+            </p>
+
+            <div class="row g-3">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="bg-amp-soft p-4 rounded-3 border-top-amp-green h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-amp-green">Paso 1</span>
+                                <span class="small font-gotham fw-bold text-amp-gold">Autenticación</span>
+                            </div>
+                            <h3 class="h6 fw-bold text-amp-green mb-1">Acceso Biométrico / Matrícula</h3>
+                            <p class="small text-secondary mb-0">
+                                Validación en tiempo real contra la base central de la AMP (&lt;2s).
+                            </p>
+                        </div>
+                        <div class="mt-3 pt-2 border-top text-end">
+                            <span class="small text-amp-green font-gotham fw-bold">Paso Siguiente &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="bg-amp-soft p-4 rounded-3 border-top-amp-gold h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-amp-gold">Paso 2</span>
+                                <span class="small font-gotham fw-bold text-amp-green">Formulario</span>
+                            </div>
+                            <h3 class="h6 fw-bold text-amp-green mb-1">Autocompletado Inteligente</h3>
+                            <p class="small text-secondary mb-0">
+                                Selecciones asistidas de fármacos y diagnósticos frecuentes.
+                            </p>
+                        </div>
+                        <div class="mt-3 pt-2 border-top text-end">
+                            <span class="small text-amp-gold font-gotham fw-bold">Paso Siguiente &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="bg-amp-soft p-4 rounded-3 border-top-amp-green h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-amp-green">Paso 3</span>
+                                <span class="small font-gotham fw-bold text-amp-gold">Validación</span>
+                            </div>
+                            <h3 class="h6 fw-bold text-amp-green mb-1">Verificación en Vivo</h3>
+                            <p class="small text-secondary mb-0">
+                                Prevención de campos vacíos o inconsistencias de datos normativos.
+                            </p>
+                        </div>
+                        <div class="mt-3 pt-2 border-top text-end">
+                            <span class="small text-amp-green font-gotham fw-bold">Paso Siguiente &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="bg-amp-soft p-4 rounded-3 border-top-amp-gold h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-amp-gold">Paso 4</span>
+                                <span class="small font-gotham fw-bold text-amp-green">Emisión</span>
+                            </div>
+                            <h3 class="h6 fw-bold text-amp-green mb-1">Generación y Descarga PDF</h3>
+                            <p class="small text-secondary mb-0">
+                                Prescripción firmada y lista para registro o envío a la persona paciente.
+                            </p>
+                        </div>
+                        <div class="mt-3 pt-2 border-top text-end">
+                            <span class="small text-amp-gold font-gotham fw-bold">Completado &#10003;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-amp-green text-white py-4 border-top border-4 border-amp-gold mt-5 text-center small">
+        <div class="container">
+            <p class="font-gotham fw-bold text-amp-gold-light mb-1">Agremiación Médica Platense — Sistema Digital RPM</p>
+            <p class="text-light text-opacity-75 mb-1">Material de Trabajo Coderhouse | Caso de Estudio de UX, Product Management y Maquetación Bootstrap 5</p>
+            <p class="text-light text-opacity-50 mb-0">Desarrollado bajo pautas de accesibilidad universal WCAG 2.1 AA.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function wrapLabel(str, maxLen = 16) {
+            if (typeof str !== 'string' || str.length <= maxLen) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLen) {
+                    if (currentLine) lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine ? ' ' : '') + word;
+                }
+            });
+            if (currentLine) lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const globalTooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        const COLOR_GREEN = '#1B432C';
+        const COLOR_GOLD = '#A58C53';
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            Chart.defaults.font.family = "'Roboto', system-ui, sans-serif";
+
+            const ctxFriccion = document.getElementById('chartFriccion').getContext('2d');
+            new Chart(ctxFriccion, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        wrapLabel('Carga Manual de Datos'),
+                        wrapLabel('Verificación de Matrícula'),
+                        wrapLabel('Atención Clínica Directa')
+                    ],
+                    datasets: [{
+                        data: [45, 25, 30],
+                        backgroundColor: [COLOR_GOLD, '#C4AB71', COLOR_GREEN],
+                        borderWidth: 2,
+                        borderColor: '#FFFFFF'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: globalTooltipConfig,
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            const ctxAdopcion = document.getElementById('chartAdopcion').getContext('2d');
+            new Chart(ctxAdopcion, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        wrapLabel('Lanzamiento (Día 1)'),
+                        wrapLabel('Mes 1 (Día 30)'),
+                        wrapLabel('Mes 2 (Día 60)'),
+                        wrapLabel('Mes 3 (Día 90)')
+                    ],
+                    datasets: [{
+                        label: '% Adopción de la Comunidad',
+                        data: [5, 18, 28, 35],
+                        backgroundColor: COLOR_GREEN,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: globalTooltipConfig,
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 40,
+                            ticks: { callback: value => value + '%' }
+                        }
+                    }
+                }
+            });
+
+            const ctxTTR = document.getElementById('chartTTR').getContext('2d');
+            new Chart(ctxTTR, {
+                type: 'line',
+                data: {
+                    labels: [
+                        wrapLabel('Sistema Tradicional'),
+                        wrapLabel('Fase Alfa'),
+                        wrapLabel('MVP Prueba Piloto'),
+                        wrapLabel('Meta Final RPM')
+                    ],
+                    datasets: [{
+                        label: 'Tiempo Promedio (Segundos)',
+                        data: [270, 180, 110, 85],
+                        borderColor: COLOR_GOLD,
+                        backgroundColor: 'rgba(165, 140, 83, 0.15)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 6,
+                        pointBackgroundColor: COLOR_GREEN
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: globalTooltipConfig,
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { callback: value => value + ' s' }
+                        }
+                    }
+                }
+            });
+
+            const ctxRadar = document.getElementById('chartRadar').getContext('2d');
+            new Chart(ctxRadar, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        wrapLabel('Contraste WCAG'),
+                        wrapLabel('Uso por Teclado'),
+                        wrapLabel('Fidelidad de Marca'),
+                        wrapLabel('Velocidad Mobile'),
+                        wrapLabel('Claridad de Errores')
+                    ],
+                    datasets: [{
+                        label: 'Puntaje de Cumplimiento (%)',
+                        data: [98, 92, 100, 95, 90],
+                        backgroundColor: 'rgba(27, 67, 44, 0.2)',
+                        borderColor: COLOR_GREEN,
+                        pointBackgroundColor: COLOR_GOLD
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: globalTooltipConfig,
+                        legend: { display: false }
+                    },
+                    scales: {
+                        r: {
+                            suggestedMin: 50,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+
+            const plotlyTrace = {
+                x: [10, 30, 60, 100, 150, 200, 300],
+                y: [8.5, 6.2, 4.0, 2.5, 1.8, 1.2, 0.9],
+                mode: 'markers+lines',
+                type: 'scattergl',
+                marker: {
+                    size: [14, 16, 18, 20, 22, 24, 26],
+                    color: COLOR_GREEN
+                },
+                line: {
+                    color: COLOR_GOLD,
+                    width: 3
+                },
+                name: 'Tasa de Error (%)'
+            };
+
+            const plotlyLayout = {
+                font: { family: 'Roboto, sans-serif' },
+                margin: { t: 20, r: 20, l: 40, b: 40 },
+                xaxis: { title: 'Trámites Realizados / Día' },
+                yaxis: { title: '% Errores de Carga' },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)'
+            };
+
+            const plotlyConfig = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            Plotly.newPlot('plotlyScatter', [plotlyTrace], plotlyLayout, plotlyConfig);
+        });
+    </script>
+</body>
+</html>
